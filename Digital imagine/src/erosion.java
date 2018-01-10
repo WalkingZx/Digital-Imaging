@@ -20,28 +20,12 @@ import org.opencv.imgproc.Imgproc;
 
 public class erosion {
 	static{	
-		System.out.println("Welcome to OpenCV" + Core.VERSION);
+		System.out.println("Eroding operation is under processing. ");
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);};
 		
 	private int MORPH_RECT = 0;
 	
 	public erosion(){
-		try {
-			Mat sourceImage = Imgcodecs.imread("src/lena.png");
-			Mat newImage = myErosion(sourceImage);
-//			Mat sourceImage2 = Imgcodecs.imread("src/lena.png");
-//			Mat sysImage= sysErosion(sourceImage2);
-			Imgcodecs.imwrite("src/lena_erosion.png", newImage);
-//			Imgcodecs.imwrite("src/lena_erosion_system.png", sysImage);
-			
-//			for(int i=0; i<newImage.rows(); i++) {
-//				for(int j=0; j<newImage.cols(); j++) {
-//					if(newImage.get(i, j)[0] != sysImage.get(i, j)[0]) System.out.print("It's different!");
-//				}
-//			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 	
 	public Mat sysErosion(Mat m) {
@@ -72,6 +56,13 @@ public class erosion {
 	}
 	
 	public static void main(String[] args){
-		new erosion();
+		erosion er = new erosion();
+		try {
+			Mat sourceImage = Imgcodecs.imread("src/lena.png");
+			Mat newImage = er.myErosion(sourceImage);
+			Imgcodecs.imwrite("src/lena_erosion.png", newImage);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 	}
 }

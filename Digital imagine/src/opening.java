@@ -20,78 +20,36 @@ import org.opencv.imgproc.Imgproc;
 
 public class opening {
 	static{	
-		System.out.println("Welcome to OpenCV" + Core.VERSION);
+		System.out.println("Opening operation is under processing. ");
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);};
 		
 	private int MORPH_RECT = 0;
 	
 	public opening(){
-		try {
-			Mat sourceImage = Imgcodecs.imread("src/lena.png");
-			Mat newImage = myDilation(myErosion(sourceImage));
-//			Mat sysImage = sysOpen(sourceImage);
-//			Imgcodecs.imwrite("src/lena_sys_opening.png", sysImage);
-			Imgcodecs.imwrite("src/lena_my_opening.png", newImage);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	}
+	
+	public Mat myOpening(Mat m) {
+		Mat rImage = new Mat();
+		erosion er = new erosion();
+		dilation d = new dilation();
+		rImage = d.myDilation(er.myErosion(m));
+		return rImage;
 	}
 	
 	public Mat sysOpen(Mat m) {
 		Mat rImage = new Mat();
 		Imgproc.morphologyEx(m,rImage,Imgproc.MORPH_OPEN,Imgproc.getStructuringElement(MORPH_RECT, new Size(5,5)));
-//		Imgproc.MORPH_OPEN(m, rImage, Imgproc.getStructuringElement(MORPH_RECT, new Size(5,5)));
-//		Imgproc.MORPH_OPEN();
 		return rImage;
 	}
 	
-	public Mat myErosion(Mat m) {
-		Mat result = m.clone();
-		int weight = m.rows();
-		int hight = m.cols();
-		
-		for(int i=2; i<weight-2; i++) {
-			for(int j=2; j<hight-2; j++) {
-				double[] min= {255.0};
-				boolean change = false;		
-				for(int x=i-2; x<i+3; x++) {
-					for(int y=j-2; y<j+3; y++) {
-							if(m.get(x, y)[0] < min[0]) {
-								min = m.get(x, y);
-								change = true;						
-							}
-						}
-					}
-				if(change) result.put(i, j, min);
-				}
-			}
-		return result;
-	}
-	
-	public Mat myDilation(Mat m) {
-		Mat result = m.clone();
-		int weight = m.rows();
-		int hight = m.cols();
-		
-		for(int i=2; i<weight-2; i++) {
-			for(int j=2; j<hight-2; j++) {
-				double[] max= {0.00};
-				boolean change = false;
-				for(int x=i-2; x<i+3; x++) {
-					for(int y=j-2; y<j+3; y++) {
-							if(m.get(x, y)[0] > max[0]) {
-								max = m.get(x, y);
-								change = true;						
-							}
-						}
-					}
-				if(change) result.put(i, j, max);
-				}
-			}
-		return result;
-	}
-	
 	public static void main(String[] args){
-		new opening();
+		opening open = new opening();
+		try {
+			Mat sourceImage = Imgcodecs.imread("src/lena.png");
+			Mat newImage = open.myOpening(sourceImage);
+			Imgcodecs.imwrite("src/lena_opening.png", newImage);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 	}
 }

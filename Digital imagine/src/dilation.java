@@ -21,28 +21,12 @@ import org.opencv.imgproc.Imgproc;
 public class dilation {
 	
 	static{
-		System.out.println("Welcome to OpenCV" + Core.VERSION);
+		System.out.println("Dilating operation is under processing. ");
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);};
 		
 	private int MORPH_RECT = 0;
 	
 	public dilation(){
-		try {
-				Mat sourceImage = Imgcodecs.imread("src/lena.png");
-				Mat newImage = myDilation(sourceImage);
-//				Mat sourceImage2 = Imgcodecs.imread("src/lena.png");
-//				Mat sysImage= sysDilation(sourceImage2);
-				Imgcodecs.imwrite("src/lena_dilation.png", newImage);
-//				Imgcodecs.imwrite("src/lena_dilation_system.png", sysImage);
-				
-//				for(int i=0; i<newImage.rows(); i++) {
-//					for(int j=0; j<newImage.cols(); j++) {
-//						if(newImage.get(i, j)[0] != sysImage.get(i, j)[0]) System.out.print("It's different!");
-//					}
-//				}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 	
 	public Mat sysDilation(Mat m) {
@@ -78,6 +62,13 @@ public class dilation {
 	}
 	
 	public static void main(String[] args){
-		new dilation();
+		dilation d = new dilation();
+		try {
+			Mat sourceImage = Imgcodecs.imread("src/lena.png");
+			Mat newImage = d.myDilation(sourceImage);
+			Imgcodecs.imwrite("src/lena_dilation.png", newImage);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
