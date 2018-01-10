@@ -5,13 +5,19 @@ import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
 /**
- * 
+
+ * @ClassName:    closing
+
+ * @Description:   take a closing operation in a picture 
+
+ * @author          Shaw
+
+ * @version         V1.0  
+
+ * @Date           10/01/2018
+
  */
 
-/**
- * @author Shaw
- *
- */
 public class closing {
 	static{	
 		System.out.println("Welcome to OpenCV" + Core.VERSION);
@@ -23,8 +29,8 @@ public class closing {
 		try {
 			Mat sourceImage = Imgcodecs.imread("src/lena.png");
 			Mat newImage = myErosion(myDilation(sourceImage));
-			Mat sysImage = sysClose(sourceImage);
-			Imgcodecs.imwrite("src/lena_sys_closing.png", sysImage);
+//			Mat sysImage = sysClose(sourceImage);
+//			Imgcodecs.imwrite("src/lena_sys_closing.png", sysImage);
 			Imgcodecs.imwrite("src/lena_my_closing.png", newImage);
 		} catch (Exception e) {
 			e.printStackTrace();

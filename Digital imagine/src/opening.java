@@ -5,13 +5,19 @@ import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
 /**
- * 
+
+ * @ClassName:     opening
+
+ * @Description:   take a opening operation in a picture 
+
+ * @author          Shaw
+
+ * @version         V1.0  
+
+ * @Date           10/01/2018
+
  */
 
-/**
- * @author Shaw
- *
- */
 public class opening {
 	static{	
 		System.out.println("Welcome to OpenCV" + Core.VERSION);
@@ -23,8 +29,8 @@ public class opening {
 		try {
 			Mat sourceImage = Imgcodecs.imread("src/lena.png");
 			Mat newImage = myDilation(myErosion(sourceImage));
-			Mat sysImage = sysOpen(sourceImage);
-			Imgcodecs.imwrite("src/lena_sys_opening.png", sysImage);
+//			Mat sysImage = sysOpen(sourceImage);
+//			Imgcodecs.imwrite("src/lena_sys_opening.png", sysImage);
 			Imgcodecs.imwrite("src/lena_my_opening.png", newImage);
 		} catch (Exception e) {
 			e.printStackTrace();

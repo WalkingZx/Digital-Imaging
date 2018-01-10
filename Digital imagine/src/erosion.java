@@ -5,13 +5,19 @@ import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
 /**
- * 
+
+ * @ClassName:     erosion
+
+ * @Description:   erode a picture 
+
+ * @author          Shaw
+
+ * @version         V1.0  
+
+ * @Date           10/01/2018
+
  */
 
-/**
- * @author Shaw
- *
- */
 public class erosion {
 	static{	
 		System.out.println("Welcome to OpenCV" + Core.VERSION);
@@ -23,10 +29,10 @@ public class erosion {
 		try {
 			Mat sourceImage = Imgcodecs.imread("src/lena.png");
 			Mat newImage = myErosion(sourceImage);
-			Mat sysImage= sysErosion(sourceImage);
-
+//			Mat sourceImage2 = Imgcodecs.imread("src/lena.png");
+//			Mat sysImage= sysErosion(sourceImage2);
 			Imgcodecs.imwrite("src/lena_erosion.png", newImage);
-			Imgcodecs.imwrite("src/lena_erosion_system.png", sysImage);
+//			Imgcodecs.imwrite("src/lena_erosion_system.png", sysImage);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -43,19 +49,17 @@ public class erosion {
 		int weight = m.rows();
 		int hight = m.cols();
 		
-		for(int i=2; i<weight-3; i++) {
-			for(int j=2; j<hight-3; j++) {
-				double[] min= {255.0};
-				boolean change = false;		
+		for(int i=2; i<weight-2; i++) {
+			for(int j=2; j<hight-2; j++) {
+				double[] min= {255.00};
 				for(int x=i-2; x<i+3; x++) {
 					for(int y=j-2; y<j+3; y++) {
 							if(m.get(x, y)[0] < min[0]) {
 								min = m.get(x, y);
-								change = true;						
+								result.put(i, j, min);					
 							}
 						}
 					}
-				if(change) result.put(i, j, min);
 				}
 			}
 		return result;

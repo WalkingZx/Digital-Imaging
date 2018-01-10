@@ -10,8 +10,6 @@ import org.opencv.imgproc.Imgproc;
 
  * @Description:   dilate a picture 
 
- * 
-
  * @author          Shaw
 
  * @version         V1.0  
@@ -21,6 +19,7 @@ import org.opencv.imgproc.Imgproc;
  */
 
 public class dilation {
+	
 	static{
 		System.out.println("Welcome to OpenCV" + Core.VERSION);
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);};
@@ -34,7 +33,6 @@ public class dilation {
 			Mat newImage = myDilation(sourceImage);
 			Imgcodecs.imwrite("src/lena_dilation.png", newImage);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
