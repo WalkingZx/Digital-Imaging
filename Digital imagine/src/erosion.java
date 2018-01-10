@@ -33,6 +33,12 @@ public class erosion {
 //			Mat sysImage= sysErosion(sourceImage2);
 			Imgcodecs.imwrite("src/lena_erosion.png", newImage);
 //			Imgcodecs.imwrite("src/lena_erosion_system.png", sysImage);
+			
+//			for(int i=0; i<newImage.rows(); i++) {
+//				for(int j=0; j<newImage.cols(); j++) {
+//					if(newImage.get(i, j)[0] != sysImage.get(i, j)[0]) System.out.print("It's different!");
+//				}
+//			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -49,17 +55,17 @@ public class erosion {
 		int weight = m.rows();
 		int hight = m.cols();
 		
-		for(int i=2; i<weight-2; i++) {
-			for(int j=2; j<hight-2; j++) {
+		for(int i=0; i<weight; i++) {
+			for(int j=0; j<hight; j++) {
 				double[] min= {255.00};
 				for(int x=i-2; x<i+3; x++) {
 					for(int y=j-2; y<j+3; y++) {
-							if(m.get(x, y)[0] < min[0]) {
-								min = m.get(x, y);
-								result.put(i, j, min);					
+						if(x>=0 && y>=0 && x<weight && y<hight) {
+							if(m.get(x, y)[0] < min[0]) min = m.get(x, y);
 							}
 						}
 					}
+				result.put(i, j, min);	
 				}
 			}
 		return result;

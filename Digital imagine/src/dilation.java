@@ -28,10 +28,18 @@ public class dilation {
 	
 	public dilation(){
 		try {
-			Mat sourceImage = Imgcodecs.imread("src/lena.png");
-			//Mat newImage = sysErosion(sourceImage);
-			Mat newImage = myDilation(sourceImage);
-			Imgcodecs.imwrite("src/lena_dilation.png", newImage);
+				Mat sourceImage = Imgcodecs.imread("src/lena.png");
+				Mat newImage = myDilation(sourceImage);
+//				Mat sourceImage2 = Imgcodecs.imread("src/lena.png");
+//				Mat sysImage= sysDilation(sourceImage2);
+				Imgcodecs.imwrite("src/lena_dilation.png", newImage);
+//				Imgcodecs.imwrite("src/lena_dilation_system.png", sysImage);
+				
+//				for(int i=0; i<newImage.rows(); i++) {
+//					for(int j=0; j<newImage.cols(); j++) {
+//						if(newImage.get(i, j)[0] != sysImage.get(i, j)[0]) System.out.print("It's different!");
+//					}
+//				}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -48,15 +56,18 @@ public class dilation {
 		int weight = m.rows();
 		int hight = m.cols();
 		
-		for(int i=2; i<weight-2; i++) {
-			for(int j=2; j<hight-2; j++) {
+		for(int i=0; i<weight; i++) {
+			for(int j=0; j<hight; j++) {
 				double[] max= {0.00};
 				boolean change = false;
 				for(int x=i-2; x<i+3; x++) {
 					for(int y=j-2; y<j+3; y++) {
+						if(x>=0 && y>=0 && x<weight && y<hight) {
 							if(m.get(x, y)[0] > max[0]) {
 								max = m.get(x, y);
-								change = true;						
+								change = true;							
+							}
+
 							}
 						}
 					}
