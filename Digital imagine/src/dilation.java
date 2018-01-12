@@ -36,6 +36,7 @@ public class dilation {
 	}
 	
 	public Mat myDilation(Mat m) {
+		Imgproc.cvtColor(m, m, Imgproc.COLOR_RGB2GRAY);
 		Mat result = m.clone();
 		int width = m.rows();
 		int height = m.cols();
