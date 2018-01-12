@@ -36,15 +36,15 @@ public class erosion {
 	
 	public Mat myErosion(Mat m) {
 		Mat result = m.clone();
-		int weight = m.rows();
-		int hight = m.cols();
+		int width = m.rows();
+		int height = m.cols();
 		
-		for(int i=0; i<weight; i++) {
-			for(int j=0; j<hight; j++) {
+		for(int i=0; i<width; i++) {
+			for(int j=0; j<height; j++) {
 				double[] min= {255.00};
 				for(int x=i-2; x<i+3; x++) {
 					for(int y=j-2; y<j+3; y++) {
-						if(x>=0 && y>=0 && x<weight && y<hight) {
+						if(x>=0 && y>=0 && x<width && y<height) {
 							if(m.get(x, y)[0] < min[0]) min = m.get(x, y);
 							}
 						}

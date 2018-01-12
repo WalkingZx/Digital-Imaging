@@ -37,16 +37,16 @@ public class dilation {
 	
 	public Mat myDilation(Mat m) {
 		Mat result = m.clone();
-		int weight = m.rows();
-		int hight = m.cols();
+		int width = m.rows();
+		int height = m.cols();
 		
-		for(int i=0; i<weight; i++) {
-			for(int j=0; j<hight; j++) {
+		for(int i=0; i<width; i++) {
+			for(int j=0; j<height; j++) {
 				double[] max= {0.00};
 				boolean change = false;
 				for(int x=i-2; x<i+3; x++) {
 					for(int y=j-2; y<j+3; y++) {
-						if(x>=0 && y>=0 && x<weight && y<hight) {
+						if(x>=0 && y>=0 && x<width && y<height) {
 							if(m.get(x, y)[0] > max[0]) {
 								max = m.get(x, y);
 								change = true;							
