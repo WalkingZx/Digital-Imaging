@@ -35,7 +35,7 @@ public class erosion {
 	}
 	
 	public Mat myErosion(Mat m) {
-		Imgproc.cvtColor(m, m, Imgproc.COLOR_RGB2GRAY);
+		if(m.channels()!=1) Imgproc.cvtColor(m, m, Imgproc.COLOR_RGB2GRAY);
 		Mat result = m.clone();
 		int width = m.rows();
 		int height = m.cols();
