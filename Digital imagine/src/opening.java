@@ -38,16 +38,16 @@ public class opening {
 	
 	public Mat sysOpen(Mat m) {
 		Mat rImage = new Mat();
-		Imgproc.morphologyEx(m,rImage,Imgproc.MORPH_OPEN,Imgproc.getStructuringElement(MORPH_RECT, new Size(5,5)));
+		Imgproc.morphologyEx(m,rImage,Imgproc.MORPH_OPEN, Imgproc.getStructuringElement(MORPH_RECT, new Size(5,5)));
 		return rImage;
 	}
 	
 	public static void main(String[] args){
 		opening open = new opening();
 		try {
-			Mat sourceImage = Imgcodecs.imread("src/lena.png");
+			Mat sourceImage = Imgcodecs.imread(args[0]);
 			Mat newImage = open.myOpening(sourceImage);
-			Imgcodecs.imwrite("src/lena_opening.png", newImage);
+			Imgcodecs.imwrite(args[1], newImage);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

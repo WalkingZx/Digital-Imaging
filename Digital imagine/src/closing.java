@@ -45,9 +45,9 @@ public class closing {
 	public static void main(String[] args){
 		closing close = new closing();
 		try {
-			Mat sourceImage = Imgcodecs.imread("src/lena.png");
+			Mat sourceImage = Imgcodecs.imread(args[0]);
 			Mat newImage = close.myClosing(sourceImage);
-			Imgcodecs.imwrite("src/lena_closing.png", newImage);
+			Imgcodecs.imwrite(args[1], newImage);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

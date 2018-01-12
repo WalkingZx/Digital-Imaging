@@ -64,9 +64,9 @@ public class dilation {
 	public static void main(String[] args){
 		dilation d = new dilation();
 		try {
-			Mat sourceImage = Imgcodecs.imread("src/lena.png");
+			Mat sourceImage = Imgcodecs.imread(args[0]);
 			Mat newImage = d.myDilation(sourceImage);
-			Imgcodecs.imwrite("src/lena_dilation.png", newImage);
+			Imgcodecs.imwrite(args[1], newImage);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
