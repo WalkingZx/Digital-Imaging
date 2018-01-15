@@ -22,20 +22,30 @@ public class closing {
 	static{	
 		System.out.println("Closing operation is under processing. ");
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);};
-		
+	
+	/** The value is used for the shape of the structure element. */
 	private int MORPH_RECT = 0;
 	
 	public closing(){
 	}
 	
+	/**
+	 * @param m the Mat of the original picture
+	 * @return the Mat after opening by using dilation and erosion methods that created by me
+	 */
 	public Mat myClosing(Mat m) {
 		Mat rImage = new Mat();
 		erosion er = new erosion();
 		dilation d = new dilation();
+		//erode the dilation result
 		rImage = er.myErosion(d.myDilation(m));
 		return rImage;
 	}
 	
+	/**
+	 * @param m the Mat of the original picture
+	 * @return the Mat after closing by using opencv
+	 */
 	public Mat sysClose(Mat m) {
 		Mat rImage = new Mat();
 		Imgproc.morphologyEx(m,rImage,Imgproc.MORPH_CLOSE,Imgproc.getStructuringElement(MORPH_RECT, new Size(5,5)));
@@ -45,9 +55,9 @@ public class closing {
 	public static void main(String[] args){
 		closing close = new closing();
 		try {
-			Mat sourceImage = Imgcodecs.imread(args[0]);
+			Mat sourceImage = Imgcodecs.imread("src/lena.png");
 			Mat newImage = close.myClosing(sourceImage);
-			Imgcodecs.imwrite(args[1], newImage);
+			Imgcodecs.imwrite("src/lena_close.png", newImage);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
