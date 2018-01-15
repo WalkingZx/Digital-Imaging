@@ -56,9 +56,9 @@ public class opening {
 	public static void main(String[] args){
 		opening open = new opening();
 		try {
-			Mat sourceImage = Imgcodecs.imread("src/lena.png");
+			Mat sourceImage = Imgcodecs.imread(args[0]);
 			Mat newImage = open.myOpening(sourceImage);
-			Imgcodecs.imwrite("src/lena_open.png", newImage);
+			Imgcodecs.imwrite(args[1], newImage);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

@@ -78,9 +78,9 @@ public class erosion {
 	public static void main(String[] args){
 		erosion er = new erosion();
 		try {
-			Mat sourceImage = Imgcodecs.imread("src/lena.png");
+			Mat sourceImage = Imgcodecs.imread(args[0]);
 			Mat newImage = er.myErosion(sourceImage);
-			Imgcodecs.imwrite("src/lena_erosion.png", newImage);
+			Imgcodecs.imwrite(args[1], newImage);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
